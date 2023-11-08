@@ -5,22 +5,23 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import web.dao.CarDaoImpl;
 import web.service.CarService;
 
 @Controller
 @RequestMapping("/cars")
 public class CarController {
 
-    private CarService service;
+    private final CarService carService;
 
-    public CarController(CarService service) {
-        this.service = service;
+    public CarController(CarService carService) {
+        this.carService = carService;
     }
 
     @GetMapping()
-    public String showCars(@RequestParam(value = "count", defaultValue = "5") int count, Model model) {
+    public String showCars(@RequestParam(value = "count", defaultValue = "5", required = false) int count, Model model) {
 
-        model.addAttribute("list", service.getListCars(count));
+        model.addAttribute("list", carService.getSomeCars(count));
         return "cars";
     }
 

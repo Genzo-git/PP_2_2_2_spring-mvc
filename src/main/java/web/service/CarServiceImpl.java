@@ -16,13 +16,12 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void addCar(Car car) {
-        carDao.addCar(car);
+    public List<Car> getAllCars() {
+        return carDao.getAllCars();
     }
 
     @Override
-    public List<Car> getListCars(int count) {
-        return carDao.getListCars(count);
+    public List<Car> getSomeCars(int count) {
+        return carDao.getSomeCars(count);
     }
-
 }
